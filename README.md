@@ -18,5 +18,5 @@ JavaScript - NodeJs -
 
 ### Comentarios
 ```
-      
+npm install vue
 ```
