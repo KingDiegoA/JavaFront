@@ -16,7 +16,7 @@
       </v-list-item-content>
       </v-list-item>
 
-      <v-list-item :to="{path: '/articulos'}">
+      <v-list-item :to="{path: '/miembros'}">
       <v-list-item-action>
       <v-icon>mdi-{{ icons[1] }}</v-icon>
       </v-list-item-action>
@@ -63,22 +63,15 @@
             <router-view></router-view>
           </v-fase-transition>
         </v-container>
-        <inicio> </inicio>
-        <listar></listar>
-        <crear></crear>
-        <modificar> </modificar>
       </v-main>
     </v-card>
   </v-app>
 </template>
 
 <script>
-import Inicio from './components/Inicio.vue';
-import listar from './components/ListarMiembros.vue';
-import crear from './components/CrearMiembros.vue';
-import modificar from './components/ModificarMiembros.vue';
+
   export default {
-  components: { Inicio, listar,crear,modificar },
+  components: {  },
    name: 'App',
    data: () =>({
      icons:['home','shopping','email'],
