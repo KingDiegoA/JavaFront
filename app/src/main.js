@@ -12,12 +12,15 @@ import crearMiembro from './components/CrearMiembros';
 //import eliminar from './components/eliminar';
 import listarMiembros from './components/ListarMiembros';
 import modificarMiembro from './components/ModificarMiembros';
+import contacto from './components/Contacto';
 
 //Creacion de los componentes
 Vue.component('inicio', inicio);
 Vue.component('listarMiembros', listarMiembros);
 Vue.component('crearMiembro', crearMiembro);
 Vue.component('modificarMiembro', modificarMiembro);
+Vue.component('contacto', contacto);
+
 
 
 //Uso de Vue-Router
@@ -29,6 +32,7 @@ const routes = [
   {path:'/miembros', component:listarMiembros},
   {path:'/crear', component:crearMiembro},
   {path:'/editar/:id', component:modificarMiembro},
+  {path:'/contacto/', component:contacto},
 ]
 //Creacion del Objeto
 const router = new VueRouter({
