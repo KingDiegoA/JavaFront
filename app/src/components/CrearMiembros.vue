@@ -48,7 +48,41 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    name:'crearMiembro'
+    name:'crearMiembro',
+     data(){
+        return{
+            miembro:{
+                rutificador:'',
+                nombre:'',
+                nacionalidad:'',
+                correo:'',
+                ingreso:'',
+                termino:'',
+                empresa:'',
+            }
+        };
+    },
+    methods:{
+        crearMiembro(){
+            var router = this.$router;
+           const formData = new FormData();
+           formData.append('rutificador',this.miembro.rutificador);
+           formData.append('nombre',this.miembro.nombre);
+           formData.append('nacionalidad',this.miembro.nacionalidad);
+           formData.append('correo',this.miembro.correo);
+           formData.append('ingreso',this.miembro.ingreso);
+           formData.append('termino',this.miembro.termino);
+           formData.append('empresa',this.miembro.empresa);
+           axios.post('https://localhost/JavaFront/app/public/apirest/Members.php',formData)
+           .then(()=>{
+               router.push('/miembros');
+           })
+           .catch(function(error){
+        console.log(error);
+            });
+        }
+    }
 }
 </script>

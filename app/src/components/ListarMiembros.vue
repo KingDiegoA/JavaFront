@@ -21,31 +21,31 @@
                 <template v-slot:default>
                     <thead>
                         <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Rutificador</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Nacionalidad</th>
-                            <th class="text-center">Correo</th>
-                            <th class="text-center">Ingreso</th>
-                            <th class="text-center">Termino</th>
-                            <th class="text-center">Empresa</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Rutificador</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Nacionalidad</th>
+                        <th class="text-center">Correo</th>
+                        <th class="text-center">Ingreso</th>
+                        <th class="text-center">Termino</th>
+                        <th class="text-center">Empresa</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="miembro in miembros" :key="miembro.ID">
-                        <td>{{miembro.ID}}</td>
-                        <td>{{miembro.rutificador}}</td>
-                        <td>{{miembro.nombre}}</td>
-                        <td>{{miembro.nacionalidad}}</td>
-                        <td>{{miembro.correo}}</td>
-                        <td>{{miembro.ingreso}}</td>
-                        <td>{{miembro.termino}}</td>
-                        <td>{{miembro.empresa}}</td>
+                    <tr v-for="miembro in miembros" :key="miembro.id">
+                       <td>{{miembro.id}}</td>
+                    <td>{{miembro.rutificador}}</td>
+                    <td>{{miembro.nombre}}</td>
+                    <td>{{miembro.nacionalidad}}</td>
+                    <td>{{miembro.correo}}</td>
+                    <td>{{miembro.ingreso}}</td>
+                    <td>{{miembro.termino}}</td>
+                    <td>{{miembro.empresa}}</td>
 
                         <td>
-                            <v-btn fab small color="primary"><v-icon>mdi-pencil</v-icon></v-btn>
-                            <v-btn fab small color="error"><v-icon>mdi-delete</v-icon></v-btn>
-                        </td>
+                            <v-btn :to="{name:'editarMiembro', params:{id:miembro.id}}" fab small color="primary"><v-icon>mdi-pencil</v-icon></v-btn>
+                             <v-btn @click.stop="dialog=true" @click="id=miembro.id" fab small color="error"><v-icon>mdi-delete</v-icon></v-btn> 
+                             </td>
                     </tr>
                     </tbody>
                 </template>
@@ -75,7 +75,45 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    name:'listarMiembros'
+    name:'listarMiembros',
+    mounted(){
+        this.obtenerMiembros();
+    },
+    data(){
+        return{            
+            dialog:false,
+            miembros:null,
+            id:null,
+            snackbar:false,
+            textsnack:'Miembro Eliminado!'
+        }
+    },
+    methods:{
+        obtenerMiembros : function(){
+            axios.get('https://localhost/JavaFront/app/public/apirest/Members.php')
+            .then(r => {
+                this.miembros = r.data;
+                console.log(this.miembros);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+
+        },
+        
+        confirmarBorrado(id){            
+            axios.delete('https://localhost/JavaFront/app/public/apirest/Members.php?id='+id)
+            .then(()=>{
+                    this.obtenerMiembros();
+                    this.dialog = false;
+                    this.snackbar = true
+            })
+            .catch(function(error){
+                console.log(error);
+            });    
+        }
+    }
 }
 </script>

@@ -6,7 +6,6 @@
     temporary
     app clipped>
     <v-list>
-
       <v-list-item :to="{path: '/'}">
       <v-list-item-action>
         <v-icon>mdi-{{ icons[0] }}</v-icon>
@@ -15,16 +14,14 @@
         <v-list-item-title>Inicio</v-list-item-title>
       </v-list-item-content>
       </v-list-item>
-
       <v-list-item :to="{path: '/miembros'}">
       <v-list-item-action>
       <v-icon>mdi-{{ icons[1] }}</v-icon>
       </v-list-item-action>
       <v-list-item-content>
-      <v-list-item-title>Articulos</v-list-item-title>
+      <v-list-item-title>Miembros</v-list-item-title>
       </v-list-item-content>
       </v-list-item>
-
       <v-list-item :to="{path: '/contacto'}">
       <v-list-item-action>
       <v-icon>mdi-{{ icons[2] }}</v-icon>
@@ -33,11 +30,8 @@
       <v-list-item-title>Contacto</v-list-item-title>
       </v-list-item-content>
       </v-list-item>
-
-
     </v-list>
     </v-navigation-drawer>
-
     <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
       <v-system-bar color="deep-purple darken-3"></v-system-bar>
       <v-app-bar class="deep-purple accent-4 white--text">
@@ -56,7 +50,6 @@
           </v-list-item>
         </v-toolbar-title>
       </v-app-bar>
-
       <v-main>
         <v-container fluid>
           <v-fase-transition mode="out-in">
@@ -67,11 +60,8 @@
     </v-card>
   </v-app>
 </template>
-
 <script>
-
   export default {
-  components: {  },
    name: 'App',
    data: () =>({
      icons:['home','shopping','email'],
