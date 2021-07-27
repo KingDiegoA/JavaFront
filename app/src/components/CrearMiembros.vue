@@ -14,29 +14,28 @@
                 label="Rutificador" outlined required>
                 </v-text-field>
 
-                <v-text-field v-model="miembro.nombre"
+                <v-text-field v-model="miembro.nombre_empleado"
                 label="Nombre" outlined required>
                 </v-text-field>
 
-                <v-text-field v-model="miembro.nacionalidad"
-                label="Nacionalidad" outlined required>
+                 <v-select label="Pais" v-model="miembro.nacionalidad" :items="items2" dense filled solo outlined required></v-select>
+
+                <v-text-field type="email" v-model="miembro.correo_electronico"
+                label="Correo Electronico" outlined required>
                 </v-text-field>
 
-                <v-text-field v-model="miembro.correo"
-                label="Correo" outlined required>
+                <v-text-field type="date" v-model="miembro.fecha_ingreso"
+                label="Fecha de Ingreso" outlined required>
                 </v-text-field>
 
-                <v-text-field v-model="miembro.ingreso"
-                label="Ingreso" outlined required>
+                <v-text-field type="date" v-model="miembro.fecha_termino"
+                label="Fecha de Termino" outlined required>
                 </v-text-field>
+                
+            
+                <v-select label="ACL" v-model="miembro.nombre_empresa" :items="items" dense filled solo outlined required></v-select>
 
-                <v-text-field v-model="miembro.termino"
-                label="Termino" outlined required>
-                </v-text-field>
-
-                <v-text-field v-model="miembro.empresa"
-                label="Empresa" outlined required>
-                </v-text-field>
+               
                 <v-card-actions>
                     <v-btn color="warning" class="mr-4" type="submit">Crear</v-btn>
                 </v-card-actions>
@@ -47,8 +46,58 @@
     </v-container>
 </template>
 
+
 <script>
+
+
+import axios from 'axios';
 export default {
-    name:'crearMiembro'
+ 
+    name:'crearMiembro',
+     data(){
+        return{
+            items: [
+            'ACL',
+            'Falabella',
+            'Previred',
+            'Cencosud',
+            ],
+            items2: [
+            'CHILE',
+            'VENEZUELA',
+            'CUBA',
+            'ARGENTINA',
+            ],
+            miembro:{
+                rutificador:'',
+                nombre_empleado:'',
+                nacionalidad:'',
+                correo_electronico:'',
+                fecha_ingreso:'',
+                fecha_termino:'',
+                nombre_empresa:'',
+            }
+        };
+    },
+    methods:{
+        crearMiembro(){
+            var router = this.$router;
+           const formData = new FormData();
+           formData.append('rutificador',this.miembro.rutificador);
+           formData.append('nombre_empleado',this.miembro.nombre_empleado);
+           formData.append('nacionalidad',this.miembro.nacionalidad);
+           formData.append('correo_electronico',this.miembro.correo_electronico);
+           formData.append('fecha_ingreso',this.miembro.fecha_ingreso);
+           formData.append('fecha_termino',this.miembro.fecha_termino);
+           formData.append('nombre_empresa',this.miembro.nombre_empresa);
+           axios.post('https://localhost/JavaFront/app/public/apirest/Members.php',formData)
+           .then(()=>{
+               router.push('/miembros');
+           })
+           .catch(function(error){
+        console.log(error);
+            });
+        }
+    }
 }
 </script>
