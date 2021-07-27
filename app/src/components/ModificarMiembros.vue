@@ -2,22 +2,21 @@
   <v-container>
     <v-row class="text-center">    
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">Modificacion de Miembros</h1>       
+        <h1 class="display-2 font-weight-bold mb-3">Editar Miembros ACL</h1>       
       </v-col>     
     </v-row>
     <v-row>
         <v-col>         
-            <form v-on:submit.prevent="guardarMiembro()">
+            <form v-on:submit.prevent="guardarMiembros()">
             <v-text-field
                 v-model="miembro.rutificador"        
                 label="Rutificador"        
                 outlined
-                required  
-                prefix="-"     
+                required       
             ></v-text-field>
             <v-text-field
                 v-model="miembro.nombre"        
-                label="Nombre"             
+                label="Nombre"
                 outlined
                 required        
             ></v-text-field>
@@ -27,27 +26,27 @@
                 outlined
                 required        
             ></v-text-field>
-             <v-text-field
+            <v-text-field
                 v-model="miembro.correo"        
-                label="Correo"             
+                label="Correo"
                 outlined
                 required        
             ></v-text-field>
-             <v-text-field
+            <v-text-field
                 v-model="miembro.ingreso"        
-                label="Ingreso"             
+                label="Ingreso"
                 outlined
                 required        
             ></v-text-field>
-             <v-text-field
+            <v-text-field
                 v-model="miembro.termino"        
-                label="Termino"             
+                label="Termino"
                 outlined
                 required        
             ></v-text-field>
             <v-text-field
                 v-model="miembro.empresa"        
-                label="Empresa"             
+                label="Empresa"
                 outlined
                 required        
             ></v-text-field>
@@ -63,7 +62,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name:'modificarMiembro',
+    name:'editarMiembros',
     mounted(){
       this.id = this.$route.params.id;
       console.log(this.$route);
@@ -86,11 +85,12 @@ export default {
           ingreso:'',
           termino:'',
           empresa:''
+
         }
       }
     },
     methods:{
-      guardarMiembro(){
+      guardarMiembros(){
          var router =  this.$router;
         axios.put('https://localhost/JavaFront/app/public/apirest/Members.php?id='+this.id+'&rutificador='+this.miembro.rutificador+'&nombre='+this.miembro.nombre+'&nacionalidad='+this.miembro.nacionalidad+'&correo='+this.miembro.correo+'&ingreso='+this.miembro.ingreso+'&termino='+this.miembro.termino+'&empresa='+this.miembro.empresa)
         .then(function(){
