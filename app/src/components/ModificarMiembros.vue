@@ -9,14 +9,14 @@
         <v-col>         
             <form v-on:submit.prevent="guardarMiembros()">
             <v-text-field v-model="miembro.rutificador"
-                label="Rutificador" outlined required>
+                label="DNI" outlined required>
                 </v-text-field>
 
                 <v-text-field v-model="miembro.nombre_empleado"
                 label="Nombre" outlined required>
                 </v-text-field>
 
-                 <v-select label="Pais" v-model="miembro.nacionalidad" :items="items2" dense filled solo outlined required></v-select>
+                <v-select  filled   dense label="Pais" v-model="miembro.nacionalidad" :items="items2"><v-text-field label="Pais" outlined required> </v-text-field></v-select>
 
                 <v-text-field type="email" v-model="miembro.correo_electronico"
                 label="Correo Electronico" outlined required>
@@ -31,7 +31,7 @@
                 </v-text-field>
                 
             
-                <v-select label="ACL" v-model="miembro.nombre_empresa" :items="items" dense filled solo outlined required></v-select>
+                <v-select  filled   dense label="Empresa" v-model="miembro.nombre_empresa" :items="items"><v-text-field  outlined required> </v-text-field></v-select>
 
                
                 <v-card-actions>

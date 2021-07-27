@@ -22,7 +22,7 @@
                     <thead>
                         <tr>
                         <th class="text-center">ID</th>
-                        <th class="text-center">Rutificador</th>
+                        <th class="text-center">DNI</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Nacionalidad</th>
                         <th class="text-center">Correo</th>
