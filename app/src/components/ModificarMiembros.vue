@@ -8,51 +8,35 @@
     <v-row>
         <v-col>         
             <form v-on:submit.prevent="guardarMiembros()">
-            <v-text-field
-                v-model="miembro.rutificador"        
-                label="Rutificador"        
-                outlined
-                required       
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.nombre"        
-                label="Nombre"
-                outlined
-                required        
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.nacionalidad"        
-                label="Nacionalidad"
-                outlined
-                required        
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.correo"        
-                label="Correo"
-                outlined
-                required        
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.ingreso"        
-                label="Ingreso"
-                outlined
-                required        
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.termino"        
-                label="Termino"
-                outlined
-                required        
-            ></v-text-field>
-            <v-text-field
-                v-model="miembro.empresa"        
-                label="Empresa"
-                outlined
-                required        
-            ></v-text-field>
-            <v-card-actions>
-            <v-btn color="warning" class="mr-4" type="submit">Guardar</v-btn>      
-            </v-card-actions>
+            <v-text-field v-model="miembro.rutificador"
+                label="Rutificador" outlined required>
+                </v-text-field>
+
+                <v-text-field v-model="miembro.nombre_empleado"
+                label="Nombre" outlined required>
+                </v-text-field>
+
+                 <v-select label="Pais" v-model="miembro.nacionalidad" :items="items2" dense filled solo outlined required></v-select>
+
+                <v-text-field type="email" v-model="miembro.correo_electronico"
+                label="Correo Electronico" outlined required>
+                </v-text-field>
+
+                <v-text-field type="date" v-model="miembro.fecha_ingreso"
+                label="Fecha de Ingreso" outlined required>
+                </v-text-field>
+
+                <v-text-field type="date" v-model="miembro.fecha_termino"
+                label="Fecha de Termino" outlined required>
+                </v-text-field>
+                
+            
+                <v-select label="ACL" v-model="miembro.nombre_empresa" :items="items" dense filled solo outlined required></v-select>
+
+               
+                <v-card-actions>
+                    <v-btn color="warning" class="mr-4" type="submit">Crear</v-btn>
+                </v-card-actions>
             </form>         
         </v-col>
     </v-row>
@@ -77,14 +61,26 @@ export default {
     data(){
       return{
         id:null,
+        items: [
+            'ACL',
+            'Falabella',
+            'Previred',
+            'Cencosud',
+            ],
+            items2: [
+            'CHILE',
+            'VENEZUELA',
+            'CUBA',
+            'ARGENTINA',
+            ],
         miembro:{
-          rutificador:'',
-          nombre:'',
-          nacionalidad:'',
-          correo:'',
-          ingreso:'',
-          termino:'',
-          empresa:''
+                rutificador:'',
+                nombre_empleado:'',
+                nacionalidad:'',
+                correo_electronico:'',
+                fecha_ingreso:'',
+                fecha_termino:'',
+                nombre_empresa:'',
 
         }
       }
@@ -92,7 +88,7 @@ export default {
     methods:{
       guardarMiembros(){
          var router =  this.$router;
-        axios.put('https://localhost/JavaFront/app/public/apirest/Members.php?id='+this.id+'&rutificador='+this.miembro.rutificador+'&nombre='+this.miembro.nombre+'&nacionalidad='+this.miembro.nacionalidad+'&correo='+this.miembro.correo+'&ingreso='+this.miembro.ingreso+'&termino='+this.miembro.termino+'&empresa='+this.miembro.empresa)
+        axios.put('https://localhost/JavaFront/app/public/apirest/Members.php?id='+this.id+'&rutificador='+this.miembro.rutificador+'&nombre_empleado='+this.miembro.nombre_empleado+'&nacionalidad='+this.miembro.nacionalidad+'&correo_electronico='+this.miembro.correo_electronico+'&fecha_ingreso='+this.miembro.fecha_ingreso+'&fecha_termino='+this.miembro.fecha_termino+'&nombre_empresa='+this.miembro.nombre_empresa)
         .then(function(){
            router.push('/miembros'); 
         })

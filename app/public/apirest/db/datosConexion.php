@@ -1,2 +1,2 @@
 <?php
-    $db = ['servidor' => 'localhost','usuario' => 'root', 'password' => '','db' => 'miembrosdb'];
+    $db = ['servidor' => 'localhost','usuario' => 'root', 'password' => '','db' => 'bd_inventario'];

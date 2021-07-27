@@ -35,12 +35,12 @@
                     <tr v-for="miembro in miembros" :key="miembro.id">
                        <td>{{miembro.id}}</td>
                     <td>{{miembro.rutificador}}</td>
-                    <td>{{miembro.nombre}}</td>
+                    <td>{{miembro.nombre_empleado}}</td>
                     <td>{{miembro.nacionalidad}}</td>
-                    <td>{{miembro.correo}}</td>
-                    <td>{{miembro.ingreso}}</td>
-                    <td>{{miembro.termino}}</td>
-                    <td>{{miembro.empresa}}</td>
+                    <td>{{miembro.correo_electronico}}</td>
+                    <td>{{miembro.fecha_ingreso}}</td>
+                    <td>{{miembro.fecha_termino}}</td>
+                    <td>{{miembro.nombre_empresa}}</td>
 
                          <td>
                     <v-btn :to="{name:'modificarMiembro', params:{id:miembro.id}}" fab small color="primary"><v-icon>mdi-pencil</v-icon></v-btn>
