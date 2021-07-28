@@ -25,4 +25,5 @@ npm install
 npm audit fix
 npm install vue-router --save
 npm install axios --save
+npm install --save firebase
 ```
