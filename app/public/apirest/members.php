@@ -17,6 +17,7 @@ function permisos() {
 }
 permisos();
 $conexion =  Conectar($db);
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if (isset($_GET['id'])) {      
       $sql = $conexion->prepare("SELECT * FROM members where id=:id");
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $input = $_POST;		
-    $sql = "INSERT INTO members (rutificador, nombre_empleado, nacionalidad, correo_electronico, fecha_ingreso, fecha_termino, nombre_empresa) VALUES (:rutificador, :nombre_empleado, :nacionalidad, :correo_electronico, :fecha_ingreso, :fecha_termino, :nombre_empresa)";		  
+    $sql = "INSERT INTO members (rutificador, nombre_empleado, nacionalidad, correo_electronico, fecha_ingreso, fecha_termino, nombre_empresa, equipo) VALUES (:rutificador, :nombre_empleado, :nacionalidad, :correo_electronico, :fecha_ingreso, :fecha_termino, :nombre_empresa, :equipo)";		  
     $resultado = $conexion->prepare($sql);
     bindAllValues($resultado, $input);
     $resultado->execute();

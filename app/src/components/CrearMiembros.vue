@@ -9,16 +9,20 @@
 
     <v-row>
         <v-col>
+            <v-card-actions class="justify-end">
+                    <v-btn to="/miembros"   dark color="indigo"> <v-icon dark>mdi-backspace</v-icon></v-btn>
+            </v-card-actions>
+            
             <form v-on:submit.prevent="crearMiembro()">
                 <v-text-field v-model="miembro.rutificador"
-                label="Rutificador" outlined required>
+                label="DNI" outlined required>
                 </v-text-field>
 
                 <v-text-field v-model="miembro.nombre_empleado"
-                label="Nombre" outlined required>
+                label="Nombre Completo" outlined required>
                 </v-text-field>
 
-                 <v-select label="Pais" v-model="miembro.nacionalidad" :items="items2" dense filled solo outlined required></v-select>
+                <v-select  filled   dense label="Nacionalidad" v-model="miembro.nacionalidad" :items="items2"><v-text-field label="Pais" outlined required> </v-text-field></v-select>
 
                 <v-text-field type="email" v-model="miembro.correo_electronico"
                 label="Correo Electronico" outlined required>
@@ -27,18 +31,27 @@
                 <v-text-field type="date" v-model="miembro.fecha_ingreso"
                 label="Fecha de Ingreso" outlined required>
                 </v-text-field>
-
+            <datepicker :bootstrap-styling="true"
+                                class="form-control"
+                                :open-date="openDate"
+                                :format="customFormatter"
+                                v-model="event_at">
+                    </datepicker>
                 <v-text-field type="date" v-model="miembro.fecha_termino"
                 label="Fecha de Termino" outlined required>
                 </v-text-field>
+
+                <v-select  filled   dense label="Cliente" v-model="miembro.nombre_empresa" :items="items"><v-text-field  outlined required> </v-text-field></v-select>
+
+                <v-select  filled   dense label="Equipo ACL" v-model="miembro.equipo" :items="items3"><v-text-field  outlined required> </v-text-field></v-select>
                 
-            
-                <v-select label="ACL" v-model="miembro.nombre_empresa" :items="items" dense filled solo outlined required></v-select>
 
                
-                <v-card-actions>
-                    <v-btn color="warning" class="mr-4" type="submit">Crear</v-btn>
+                <v-card-actions class="justify-center">
+                    <v-btn color="warning" block class="mr-4" type="submit">Crear</v-btn>
                 </v-card-actions>
+    
+                
                 
             </form>
         </v-col>
@@ -68,6 +81,11 @@ export default {
             'CUBA',
             'ARGENTINA',
             ],
+            items3: [
+            'SI',
+            'NO',
+            ],
+ 
             miembro:{
                 rutificador:'',
                 nombre_empleado:'',
@@ -76,10 +94,13 @@ export default {
                 fecha_ingreso:'',
                 fecha_termino:'',
                 nombre_empresa:'',
+                equipo:'',
+
             }
         };
     },
     methods:{
+        
         crearMiembro(){
             var router = this.$router;
            const formData = new FormData();
@@ -90,6 +111,7 @@ export default {
            formData.append('fecha_ingreso',this.miembro.fecha_ingreso);
            formData.append('fecha_termino',this.miembro.fecha_termino);
            formData.append('nombre_empresa',this.miembro.nombre_empresa);
+           formData.append('equipo',this.miembro.equipo);
            axios.post('https://localhost/JavaFront/app/public/apirest/Members.php',formData)
            .then(()=>{
                router.push('/miembros');
@@ -98,6 +120,7 @@ export default {
         console.log(error);
             });
         }
+        
     }
 }
 </script>

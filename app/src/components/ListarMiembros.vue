@@ -2,17 +2,17 @@
     <v-container>
         <v-row class="text-center">
             <v-col class ="mb-4">
-                <h2 class="display-2 font-weight-bold mb-3"> Listado de Miembros ACL </h2>
+                <h2 class="display-2 font-weight-bold mb-3">Miembros ACL </h2>
             </v-col>
         </v-row>
 
         <v-row>
             <v-col class="mb-1">
-                <v-btn :to="{name: 'crearMiembro'}" class="mx-2" fab dark color="indigo">
-                <v-icon dark>mdi-plus</v-icon>
+                <v-btn :to="{name: 'crearMiembro'}" class="mx-2" x-large fab dark color="indigo">
+                <v-icon dark>mdi-account-plus</v-icon>
                 </v-btn>
             </v-col>
-            </v-row>
+        </v-row>
 
 
         <v-row class="text-center">
@@ -21,30 +21,31 @@
                 <template v-slot:default>
                     <thead>
                         <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Rutificador</th>
-                        <th class="text-center">Nombre</th>
+                        <th class="text-center">DNI</th>
+                        <th class="text-center">Nombre Completo</th>
                         <th class="text-center">Nacionalidad</th>
-                        <th class="text-center">Correo</th>
-                        <th class="text-center">Ingreso</th>
-                        <th class="text-center">Termino</th>
-                        <th class="text-center">Empresa</th>
+                        <th class="text-center">Cliente</th>
+                        <th class="text-center">Correo Electronico</th>
+                        <th class="text-center">Fecha de Ingreso</th>
+                        <th class="text-center">Fecha de Termino</th>
+                        <th class="text-center">Equipo ACL</th>
+                        <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr v-for="miembro in miembros" :key="miembro.id">
-                       <td>{{miembro.id}}</td>
                     <td>{{miembro.rutificador}}</td>
                     <td>{{miembro.nombre_empleado}}</td>
                     <td>{{miembro.nacionalidad}}</td>
+                     <td>{{miembro.nombre_empresa}}</td>
                     <td>{{miembro.correo_electronico}}</td>
                     <td>{{miembro.fecha_ingreso}}</td>
                     <td>{{miembro.fecha_termino}}</td>
-                    <td>{{miembro.nombre_empresa}}</td>
+                    <td>{{miembro.equipo}}</td>
 
                          <td>
-                    <v-btn :to="{name:'modificarMiembro', params:{id:miembro.id}}" fab small color="primary"><v-icon>mdi-pencil</v-icon></v-btn>
-                    <v-btn @click.stop="dialog=true" @click="id=miembro.id" fab small color="error"><v-icon>mdi-delete</v-icon></v-btn>
+                    <v-btn :to="{name:'modificarMiembro', params:{id:miembro.id}}" x-small fab small color="primary"><v-icon>mdi-account-edit</v-icon></v-btn>
+                    <v-btn @click.stop="dialog=true" @click="id=miembro.id" x-small fab small color="error"><v-icon>mdi-account-remove</v-icon></v-btn>
                     </td>
                     </tr>
                     </tbody>
