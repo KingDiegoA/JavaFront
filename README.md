@@ -8,7 +8,9 @@ JavaScript - NodeJs -
 
 #Softwares
 ```
- 
+ Xampp
+ MySQL
+ Visual Code
 ```
 
 ### Nuevas Implementaciones
